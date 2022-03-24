@@ -1,0 +1,8 @@
+.DS_Store
+.vscode
+vyos-documentation
+tmp
+logs/*.log
+output
+ansible.cfg
+facts_file.json
