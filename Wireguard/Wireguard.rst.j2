@@ -47,9 +47,10 @@ After this, the public key can be displayed, to save for later.
 
 .. code-block:: none
 
-   vyos@central:~$ generate wireguard default-keypair
-   vyos@central:~$ show wireguard keypairs pubkey default
-   {{ hostvars['central']['pubkey']['stdout_lines'][0][0] }}
+   vyos@central:~$ generate pki wireguard
+{% for line in hostvars['central']['keys']['stdout_lines'][0] %}
+   {{ line }}
+{% endfor %}
 
 
 After you have each public key. The wireguard interfaces can be setup.
@@ -59,13 +60,13 @@ Central
 
 .. literalinclude:: {{ output_include_dir }}/central.conf
    :language: none
-   :lines: 4-11
+   :lines: 4-12
 
 Branch
 
 .. literalinclude:: {{ output_include_dir }}/branch.conf
    :language: none
-   :lines: 4-11
+   :lines: 4-12
 
 
 To reach the network, a route must be set on each VyOS host.
@@ -75,13 +76,13 @@ Central
 
 .. literalinclude:: {{ output_include_dir }}/central.conf
    :language: none
-   :lines: 13
+   :lines: 14
 
 Branch
 
 .. literalinclude:: {{ output_include_dir }}/branch.conf
    :language: none
-   :lines: 13
+   :lines: 14
 
 *********************
 Testing and debugging

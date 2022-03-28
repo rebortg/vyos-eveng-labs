@@ -1,24 +1,14 @@
 ---
 
-- name: get and or create Wireguard default keypair
-  block:
-    - name: show wireguard keypairs pubkey default
-      vyos_command:
-        commands: show wireguard keypairs pubkey default
-      register: pubkey_out
-    - fail:
-      when: pubkey_out.stdout[0].find("found") != -1
+- name: generate pki wireguard key-pair
+  vyos_command:
+    commands: generate pki wireguard key-pair
+  register: keys
 
-  rescue:
-    - name: generate wireguard default-keypair
-      vyos_command:
-        commands: generate wireguard default-keypair
-
-  always:
-    - name: show wireguard keypairs pubkey default
-      vyos_command:
-        commands: show wireguard keypairs pubkey default
-      register: pubkey
+- name: set pub and private key
+  set_fact:
+    prikey: "{{ keys.stdout_lines[0][0].split(': ')[1] }}"
+    pubkey: "{{ keys.stdout_lines[0][1].split(': ')[1] }}"
 
 - name: setup nodes
   vyos.vyos.vyos_config:
