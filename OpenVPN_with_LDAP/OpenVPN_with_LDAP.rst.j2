@@ -79,13 +79,13 @@ after all these steps the config look like this:
 
 .. code-block:: none
 
-      {{ hostvars['ovpn-server'].install_ca.stdout_lines[0][-3:-2][0] }}
-      {{ hostvars['ovpn-server'].install_ca.stdout_lines[0][-1:][0] }}
-      {{ hostvars['ovpn-server'].install_srv.stdout_lines[0][-3:-2][0] }}
-      {{ hostvars['ovpn-server'].install_srv.stdout_lines[0][-1:][0] }}
-      {{ hostvars['ovpn-server'].install_client.stdout_lines[0][-3:-2][0] }}
-      {{ hostvars['ovpn-server'].install_client.stdout_lines[0][-1:][0] }}
-      {{ hostvars['ovpn-server'].install_dh.stdout_lines[0][-1:][0] }}
+      {{ hostvars['ovpn-server'].install_ca.stdout_lines[0][-2] }}
+      {{ hostvars['ovpn-server'].install_ca.stdout_lines[0][-1] }}
+      {{ hostvars['ovpn-server'].install_srv.stdout_lines[0][-2] }}
+      {{ hostvars['ovpn-server'].install_srv.stdout_lines[0][-1] }}
+      {{ hostvars['ovpn-server'].install_client.stdout_lines[0][-2] }}
+      {{ hostvars['ovpn-server'].install_client.stdout_lines[0][-1] }}
+      {{ hostvars['ovpn-server'].install_dh.stdout_lines[0][-1] }}
 
 Once all the required certificates and keys are installed, the remaining 
 OpenVPN Server configuration can be carried out.
