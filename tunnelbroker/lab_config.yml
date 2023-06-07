@@ -4,6 +4,7 @@
   vyos.vyos.vyos_config:
     src: "labs/{{ lab }}/{{ inventory_hostname }}.conf"
     save: True
+  when: inventory_hostname in groups['vyos']
 
 - block:
   - name: Register external IP in Tunnelbroker
